@@ -36,5 +36,8 @@ namespace SupplierHub.Models
 		public ICollection<Category> SubCategories { get; set; } = new List<Category>();
 
 		public ICollection<Item> Items { get; set; } = new List<Item>();
+
+		public ICollection<RFxEvent> RFxEvents { get; set; }
+
 	}
 }

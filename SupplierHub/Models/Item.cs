@@ -45,5 +45,7 @@ namespace SupplierHub.Models
 
 		public ICollection<CatalogItem> CatalogItems { get; set; } = new List<CatalogItem>();
 		public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+
+		public ICollection<RFxLine> RFxLines { get; set; }=new List<RFxLine>();
 	}
 }

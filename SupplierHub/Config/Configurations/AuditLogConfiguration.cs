@@ -23,7 +23,6 @@ namespace SupplierHub.Config.Configurations
 			builder.Property(x => x.TimestampUtc)
 				   .IsRequired()
 				   .HasDefaultValueSql("GETUTCDATE()");
-
 			// Indexes (query accelerators)
 			builder.HasIndex(x => x.TimestampUtc).HasDatabaseName("idx_auditlogs_timestamputc");
 			builder.HasIndex(x => x.Resource).HasDatabaseName("idx_auditlogs_resource");

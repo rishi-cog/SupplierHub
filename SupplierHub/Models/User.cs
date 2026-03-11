@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SupplierHub.Models;
+using SupplierHub.Constants.Enum;
 
 
 namespace SupplierHub.Models
@@ -42,5 +43,7 @@ namespace SupplierHub.Models
 		public DateTime? LastLoginAtUtc { get; set; }
 
 		public ICollection<RFxEvent> Events { get; set; }
+
+		public ICollection<SystemConfig> systemConfigs { get; set; }
 	}
 }

@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupplierHub.Models
 {
-	[Table("Shipment")]
 	public class Shipment
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long ShipmentID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(PurchaseOrder))]
 		public long POID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Supplier))]
 		public long SupplierID { get; set; }
 
 		[Required]

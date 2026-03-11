@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using SupplierHub.Models;
 
 namespace SupplierHub.Models
 {
-	[Table("PRLine")]
 	public class PRLine
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long PRLineID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Requisition))]
 		public long PRID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Item))]
 		public long ItemID { get; set; }
 
 		[StringLength(int.MaxValue)]
@@ -35,7 +31,6 @@ namespace SupplierHub.Models
 		[StringLength(3)]
 		public string Currency { get; set; } = "USD";
 
-		[ForeignKey(nameof(SupplierPreferred))]
 		public long? SupplierPreferredID { get; set; }
 
 		[StringLength(500)]

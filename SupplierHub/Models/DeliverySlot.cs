@@ -1,18 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupplierHub.Models
 {
-	[Table("DeliverySlot")]
 	public class DeliverySlot
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long SlotID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Site))]
 		public long SiteID { get; set; }
 
 		[Required]

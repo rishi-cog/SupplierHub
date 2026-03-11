@@ -1,28 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using SupplierHub.Constants;
-using SupplierHub.Models.IAM;
 
 namespace SupplierHub.Models
 {
-	[Table("Requisition")]
 	public class Requisition
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long PRID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Requester))]
 		public long RequesterID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Organization))]
 		public long OrgID { get; set; }
 
-		[Required]
 		[StringLength(100)]
 		public string? CostCenter { get; set; }
 

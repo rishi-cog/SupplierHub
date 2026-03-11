@@ -1,23 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using SupplierHub.Models.IAM;
 
 namespace SupplierHub.Models
 {
-	[Table("ApprovalStep")]
 	public class ApprovalStep
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long StepID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Requisition))]
 		public long PRID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Approver))]
 		public long ApproverID { get; set; }
 
 		[Required]

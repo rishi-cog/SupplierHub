@@ -1,22 +1,17 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupplierHub.Models
 {
-	[Table("ASNItem")]
 	public class ASNItem
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long ASNItemID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(ASN))]
 		public long ASNID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(POLine))]
 		public long POLineID { get; set; }
 
 		[Required]

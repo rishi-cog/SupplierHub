@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SupplierHub.Models
 {
-	[Table("ASN")]
 	public class ASN
 	{
 		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public long ASNID { get; set; }
 
 		[Required]
-		[ForeignKey(nameof(Shipment))]
 		public long ShipmentID { get; set; }
 
 		[Required]

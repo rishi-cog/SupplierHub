@@ -22,9 +22,6 @@ namespace SupplierHub.Models
 		[MaxLength(30)]
 		public string? Phone { get; set; }
 
-		[Required, MaxLength(60)]
-		public string Username { get; set; }
-
 		[Required]
 		public UserRole Role { get; set; }
 
@@ -32,15 +29,14 @@ namespace SupplierHub.Models
 		public UserStatus Status { get; set; }
 
 		[Required]
-		public byte[] PasswordHash { get; set; }
-
-		[Required]
-		public byte[] PasswordSalt { get; set; }
+		public string PasswordHash { get; set; }
 
 		[Required]
 		public DateTime CreatedAtUtc { get; set; }
 
 		public DateTime? LastLoginAtUtc { get; set; }
+
+		public bool IsDeleted { get; set; }	 // default -> false
 
 		public ICollection<RFxEvent> Events { get; set; }
 

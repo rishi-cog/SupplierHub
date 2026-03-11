@@ -27,6 +27,8 @@ builder.Property(x => x.IsDeleted).IsRequired().HasDefaultValue(false);
 
 			builder.Property(x => x.CreatedOn).IsRequired().HasDefaultValueSql("GETUTCDATE()");
 			builder.Property(x => x.UpdatedOn).HasDefaultValueSql("GETUTCDATE()");
+			// NEW: IsDeleted default
+			builder.Property(x => x.IsDeleted).IsRequired().HasDefaultValue(false);
 
 			builder.HasOne(x => x.Supplier)
 				   .WithMany(x => x.Risks)
@@ -40,7 +42,8 @@ builder.Property(x => x.IsDeleted).IsRequired().HasDefaultValue(false);
 			builder.HasIndex(x => x.AssessedDate).HasDatabaseName("idx_risk_assessed");
 			builder.HasIndex(x => x.Status).HasDatabaseName("idx_risk_status");
 			builder.HasIndex(x => x.UpdatedOn).HasDatabaseName("idx_risk_updatedon");
-            builder.HasIndex(x => x.IsDeleted).HasDatabaseName("idx_contract_isdeleted");
-        }
+			builder.HasIndex(x => x.IsDeleted).HasDatabaseName("idx_contract_isdeleted");
+
+		}
 	}
 }

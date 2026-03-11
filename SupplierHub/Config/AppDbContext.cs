@@ -8,6 +8,20 @@ namespace SupplierHub.Config
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
 		// DbSets (Models)
+
+		// PurchaseOrder
+		public DbSet<PurchaseOrder> PurchaseOrders => Set<PurchaseOrder>();
+		public DbSet<POLine> POLines => Set<POLine>();
+		public DbSet<PORevision> PORevisions => Set<PORevision>();
+		public DbSet<PoAck> PoAcks => Set<PoAck>();
+		public DbSet<ErpExportRef> ErpExportRefs => Set<ErpExportRef>();
+
+		//Invoices
+		public DbSet<Invoice> Invoices => Set<Invoice>();
+		public DbSet<InvoiceLine> InvoiceLines => Set<InvoiceLine>();
+		public DbSet<MatchRef> MatchRefs => Set<MatchRef>();
+
+
 		public DbSet<ApprovalRule> ApprovalRules => Set<ApprovalRule>();
 		public DbSet<Catalog> Catalogs => Set<Catalog>();
 		public DbSet<CatalogItem> CatalogItems => Set<CatalogItem>();

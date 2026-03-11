@@ -50,5 +50,6 @@ namespace SupplierHub.Models
 
 		[Column("updatedon")]
 		public DateTime UpdatedOn { get; set; } = DateTime.Now;
+		public bool IsDeleted { get; set; }
 	}
 }

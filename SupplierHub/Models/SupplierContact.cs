@@ -26,12 +26,14 @@ namespace SupplierHub.Models
 		public string? Role { get; set; }
 
 		[Required]
-		public ContactStatus Status { get; set; }
+		public SupplierContactStatus Status { get; set; }
 
 		[Required]
 		public DateTime CreatedOn { get; set; }
 
 		public DateTime? UpdatedOn { get; set; }
+
+		public bool IsDeleted { get; set; }  // default -> false
 
 		// Navigation
 		[ForeignKey(nameof(SupplierId))]

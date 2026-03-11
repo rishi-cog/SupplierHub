@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SupplierHub.Models;
+using SupplierHub.Constants.Enum;
 
 namespace SupplierHub.Config.Configurations
 {
@@ -12,7 +13,7 @@ namespace SupplierHub.Config.Configurations
 
 			builder.Property(x => x.Name).IsRequired().HasMaxLength(120);
 			builder.Property(x => x.Email).IsRequired().HasMaxLength(120);
-			builder.Property(x => x.Username).IsRequired().HasMaxLength(60);
+			builder.Property(x => x.Name).IsRequired().HasMaxLength(60);
 
 			// Enums as string
 			builder.Property(x => x.Role)
@@ -33,7 +34,7 @@ namespace SupplierHub.Config.Configurations
 
 			// Indexes (at the end)
 			builder.HasIndex(x => x.Email).IsUnique().HasDatabaseName("uq_users_email");
-			builder.HasIndex(x => x.Username).IsUnique().HasDatabaseName("uq_users_username");
+			builder.HasIndex(x => x.Name).IsUnique().HasDatabaseName("uq_users_username");
 			builder.HasIndex(x => x.Status).HasDatabaseName("idx_users_status");
 		}
 	}

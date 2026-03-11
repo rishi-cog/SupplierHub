@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using SupplierHub.Constants.Enum;
-using SupplierHub.Constants.Enums; // Add this using statement!
 
 namespace SupplierHub.Models
 {
@@ -20,7 +19,7 @@ namespace SupplierHub.Models
         [Column("supplier_id")]
         public long SupplierId { get; set; }
 
-        [Column("po_date", TypeName = "date")]
+		[Column("po_date", TypeName = "date")]
         public DateTime PoDate { get; set; } = DateTime.Now;
 
         [Column("currency")]
@@ -37,12 +36,14 @@ namespace SupplierHub.Models
         [Required]
         [Column("status")]
         [StringLength(50)]
-        public PurchaseOrderStatus Status { get; set; } = PurchaseOrderStatus.OPEN;
+		public virtual ICollection<POLine> OrderLines { get; set; } = new List<POLine>();
+		public PurchaseOrderStatus Status { get; set; } = PurchaseOrderStatus.Open;
 
         [Column("createdon")]
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
         [Column("updatedon")]
         public DateTime UpdatedOn { get; set; } = DateTime.Now;
-    }
+		public bool IsDeleted { get; set; }
+	}
 }

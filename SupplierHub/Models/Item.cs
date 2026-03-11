@@ -34,6 +34,8 @@ namespace SupplierHub.Models
 
 		public DateTime? UpdatedOn { get; set; }
 
+		public bool IsDeleted { get; set; }  // default -> false
+
 		// Navigation
 		[ForeignKey(nameof(CategoryId))]
 		public virtual Category Category { get; set; }

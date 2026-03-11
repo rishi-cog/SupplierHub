@@ -31,6 +31,8 @@ namespace SupplierHub.Models
 
 		public DateTime? UpdatedOn { get; set; }
 
+		public bool IsDeleted { get; set; }  // default -> false
+
 		// Navigation
 		[ForeignKey(nameof(PrimaryContactId))]
 		public virtual SupplierContact? PrimaryContact { get; set; }

@@ -29,6 +29,9 @@ namespace SupplierHub.Config.Configurations
 
 			builder.Property(x => x.CreatedOn).IsRequired().HasDefaultValueSql("GETUTCDATE()");
 			builder.Property(x => x.UpdatedOn).HasDefaultValueSql("GETUTCDATE()");
+			// NEW: IsDeleted default
+			builder.Property(x => x.IsDeleted).IsRequired().HasDefaultValue(false);
+
 
 			builder.HasOne(x => x.Supplier)
 				   .WithMany(s => s.Catalogs)
@@ -40,6 +43,8 @@ namespace SupplierHub.Config.Configurations
 			builder.HasIndex(x => x.SupplierId).HasDatabaseName("idx_catalog_supplier");
 			builder.HasIndex(x => x.Status).HasDatabaseName("idx_catalog_status");
 			builder.HasIndex(x => x.UpdatedOn).HasDatabaseName("idx_catalog_updatedon");
+			builder.HasIndex(x => x.IsDeleted).HasDatabaseName("idx_contract_isdeleted");
+
 		}
 	}
 }

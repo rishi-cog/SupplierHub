@@ -1,12 +1,12 @@
-namespace SupplierHub.Constants.Enums
+namespace SupplierHub.Constants.Enum
 {
     public enum PurchaseOrderStatus
     {
-        OPEN = 1,
-        ACKNOWLEDGED = 2,
-        PARTIALLY_SHIPPED = 3,
-        SHIPPED = 4,
-        CLOSED = 5,
-        CANCELLED = 6
+        Open = 1,
+        Acknowledged = 2,
+        Partially_Shipped = 3,
+        Shipped = 4,
+        Closed = 5,
+        Cancelled = 6
     }
 }

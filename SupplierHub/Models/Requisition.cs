@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using SupplierHub.Constants;
 
 namespace SupplierHub.Models
 {
-	[Table("requisition")]
 	public class Requisition
 	{
 		[Key]
@@ -20,14 +19,26 @@ namespace SupplierHub.Models
 		[StringLength(100)]
 		public string? CostCenter { get; set; }
 
+		[StringLength(int.MaxValue)]
 		public string? Justification { get; set; }
 
 		[Required]
-		public DateTimeOffset RequestedDate { get; set; }
+		public DateTime RequestedDate { get; set; }
 
-		public DateTimeOffset? NeededByDate { get; set; }
+		public DateTime? NeededByDate { get; set; }
 
 		[Required]
 		public RequisitionStatus Status { get; set; }
+
+		// Navigation Properties
+		public virtual User Requester { get; set; }
+
+		public virtual Organization Organization { get; set; }
+
+		public virtual ICollection<PRLine> PRLines { get; set; } = new List<PRLine>();
+
+		public virtual ICollection<ApprovalStep> ApprovalSteps { get; set; } = new List<ApprovalStep>();
+
+		public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; } = new List<PurchaseOrder>();
 	}
 }

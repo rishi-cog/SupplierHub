@@ -19,6 +19,12 @@ namespace SupplierHub.Models
 
 		public DateTime? DecisionDate { get; set; }
 
+<<<<<<< Updated upstream
+=======
+
+		 // default -> false
+
+>>>>>>> Stashed changes
 		[MaxLength(500)]
 		public string? Remarks { get; set; }
 

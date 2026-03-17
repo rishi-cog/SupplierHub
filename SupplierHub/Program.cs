@@ -33,6 +33,9 @@ builder.Services.AddScoped<ISuppliersService, SuppliersService>();
 
 
 
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+
 
 
 

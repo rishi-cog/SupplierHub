@@ -22,9 +22,15 @@ namespace SupplierHub.Models
 		[Required]
 		public DateTime CreatedOn { get; set; }
 
+<<<<<<< Updated upstream
 		[Required]
 
 		public bool IsDeleted { get; set; }
+=======
+	
+		public bool IsDeleted { get; set; }  // default -> false
+
+>>>>>>> Stashed changes
 
 		[Required]
 		public DateTime UpdatedOn { get; set; }

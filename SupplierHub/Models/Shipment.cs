@@ -26,6 +26,10 @@ namespace SupplierHub.Models
 		public required string Status { get; set; }
 
 		[Required]
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 		public DateTime CreatedOn { get; set; }
 
 		[Required]

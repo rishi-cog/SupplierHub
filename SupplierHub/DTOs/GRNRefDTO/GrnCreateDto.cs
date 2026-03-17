@@ -1,9 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
+<<<<<<< Updated upstream
 
 namespace SupplierHub.DTOs.GrnRefDTO
 
+=======
+namespace SupplierHub.DTOs.GrnRefDTO
+
+
+>>>>>>> Stashed changes
 {
     public class GrnCreateDto
     {

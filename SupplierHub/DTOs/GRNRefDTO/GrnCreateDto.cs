@@ -2,11 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-
 namespace SupplierHub.DTOs.GrnRefDTO
-
-
-
 
 
 {

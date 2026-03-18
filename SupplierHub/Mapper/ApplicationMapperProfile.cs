@@ -23,6 +23,10 @@ using SupplierHub.DTOs.NotificationDTO;
 
 using SupplierHub.DTOs.InspectionDTO;
 using SupplierHub.DTOs.GrnRefDTO;
+using SupplierHub.DTOs.GrnItemRefDTO;
+using SupplierHub.DTOs.NcrDTO;
+using SupplierHub.DTOs.SupplierKpiDTO;
+using SupplierHub.DTOs.ScorecardDTO;
 using SupplierHub.Models;
 
 //Neeraj DTOs
@@ -34,6 +38,7 @@ using SupplierHub.DTOs.ErpExportRefDTO;
 using SupplierHub.DTOs.InvoiceDTO;
 using SupplierHub.DTOs.InvoiceLineDTO;
 using SupplierHub.DTOs.MatchRefDTO;
+
 
 namespace SupplierHub.MapProfile
 {
@@ -115,19 +120,46 @@ namespace SupplierHub.MapProfile
             CreateMap<Inspection, InspectionReadDto>().ReverseMap();
             CreateMap<Inspection, InspectionUpdateDto>().ReverseMap();
 
-            //GRNRef
+            //GrnRef
 
             CreateMap<GrnRef, GrnCreateDto>().ReverseMap();
             CreateMap<GrnRef, GrnReadDto>().ReverseMap();
             CreateMap<GrnRef, GrnStatusUpdateDto>().ReverseMap();
             CreateMap<GrnRef, GrnUpdateDto>().ReverseMap();
 
-        
-			CreateMap<RfxEvent, RFxEventCreateDto>().ReverseMap();
+			//GrnItemRef
+
+			CreateMap<GrnItemRef, GrnItemCreateDto>().ReverseMap();
+			CreateMap<GrnItemRef, GrnItemReadDto>().ReverseMap();
+			CreateMap<GrnItemRef, GrnItemUpdateDto>().ReverseMap();
+
+			//Ncr
+
+			CreateMap<Ncr, NcrCreateDto>().ReverseMap();
+			CreateMap<Ncr, NcrReadDto>().ReverseMap();
+			CreateMap<Ncr, NcrUpdateDto>().ReverseMap();
+
+            //SupplierKpi
+
+			CreateMap<SupplierKpi, SupplierKpiCreateDto>().ReverseMap();
+			CreateMap<SupplierKpi, SupplierKpiReadDto>().ReverseMap();
+			CreateMap<SupplierKpi, SupplierKpiUpdateDto>().ReverseMap();
+
+            //Scorecard
+
+			CreateMap<Scorecard, ScorecardCreateDto>().ReverseMap();
+			CreateMap<Scorecard, ScorecardReadDto>().ReverseMap();
+			CreateMap<Scorecard, ScorecardUpdateDto>().ReverseMap();
+
+            // RfxEvent mappings
+
+            CreateMap<RfxEvent, RFxEventCreateDto>().ReverseMap();
 			CreateMap<RfxEvent, RFxEventReadDto>().ReverseMap();
 			CreateMap<RfxEvent, RFxEventUpdateDto>().ReverseMap();
 
-			CreateMap<RfxLine, RfxLineCreateDto>().ReverseMap();
+            // RfxLine mappings
+
+            CreateMap<RfxLine, RfxLineCreateDto>().ReverseMap();
 			CreateMap<RfxLine, RfxLineReadDto>().ReverseMap();
 			CreateMap<RfxLine, RfxLineUpdateDto>().ReverseMap();
 

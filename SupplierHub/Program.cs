@@ -47,15 +47,19 @@ builder.Services.AddAutoMapper(typeof(ApplicationMapperProfile).Assembly);
 builder.Services.AddScoped<ISuppliersRepository, SuppliersRepository>();
 builder.Services.AddScoped<ISuppliersService, SuppliersService>();
 
-<<<<<<< HEAD
-//Notification repository & service
-=======
+
 builder.Services.AddScoped<IRfxRepository, RfxRepository>();
 builder.Services.AddScoped<IRfxService, RfxService>();
 
+// --- Receiving & Quality Registrations ---
+builder.Services.AddScoped<IReceivingQualityRepository, ReceivingQualityRepository>();
+builder.Services.AddScoped<IReceivingQualityService, ReceivingQualityService>();
 
->>>>>>> b9dd07f7bdb5c0617467d30ceb0a2756c7ee9a83
+// --- Performance & Scorecard Registrations ---
+builder.Services.AddScoped<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddScoped<IPerformanceService, PerformanceService>();
 
+//Notification repository & service
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationService, NotificationService>();
 

@@ -34,10 +34,16 @@ namespace SupplierHub.Config.Configurations
 		}
 	}
 
+	// POLine
+	public class POLineConfiguration : IEntityTypeConfiguration<PoLine>
+	{
+		public void Configure(EntityTypeBuilder<PoLine> builder) { }
+	}
 	// PoLine
 	public class PoLineConfiguration : IEntityTypeConfiguration<PoLine>
 	{
 		public void Configure(EntityTypeBuilder<PoLine> builder)
+
 		{
 			builder.HasKey(x => x.PoLineID);
 			builder.Property(x => x.PoLineID).ValueGeneratedOnAdd();

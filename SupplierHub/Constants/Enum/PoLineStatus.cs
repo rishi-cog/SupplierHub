@@ -1,6 +1,6 @@
 ﻿namespace SupplierHub.Constants.Enum
 {
-	public enum PoLine
+	public enum PoLineStatus
 	{
 		Active = 1,
 		Cancelled = 2,

@@ -736,7 +736,7 @@ namespace SupplierHub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PLines",
+                name: "PoLines",
                 columns: table => new
                 {
                     PoLineID = table.Column<long>(type: "bigint", nullable: false)

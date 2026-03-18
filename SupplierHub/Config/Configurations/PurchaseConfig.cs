@@ -35,9 +35,9 @@ namespace SupplierHub.Config.Configurations
 	}
 
 	// POLine
-	public class POLineConfiguration : IEntityTypeConfiguration<SupplierHub.Models.PoLine>
+	public class POLineConfiguration : IEntityTypeConfiguration<SupplierHub.Models.POLine>
 	{
-		public void Configure(EntityTypeBuilder<SupplierHub.Models.PoLine> builder)
+		public void Configure(EntityTypeBuilder<SupplierHub.Models.POLine> builder)
 		{
 			builder.HasKey(x => x.PoLineID);
 			builder.Property(x => x.PoLineID).ValueGeneratedOnAdd();

@@ -32,7 +32,13 @@ builder.Services.AddScoped<ISuppliersRepository, SuppliersRepository>();
 builder.Services.AddScoped<ISuppliersService, SuppliersService>();
 
 
+// --- Receiving & Quality Registrations ---
+builder.Services.AddScoped<IReceivingQualityRepository, ReceivingQualityRepository>();
+builder.Services.AddScoped<IReceivingQualityService, ReceivingQualityService>();
 
+// --- Performance & Scorecard Registrations ---
+builder.Services.AddScoped<IPerformanceRepository, PerformanceRepository>();
+builder.Services.AddScoped<IPerformanceService, PerformanceService>();
 
 
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace SupplierHub.DTOs.InspectionDTO
+namespace SupplierHub.DTOs.GrnRefDTO
 {
     public class GrnUpdateDto
     {

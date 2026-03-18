@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SupplierHub;
 using SupplierHub.MapProfile;
-
+using AutoMapper;
 
 using SupplierHub.Repositories;
 using SupplierHub.Repositories.Interface;
@@ -45,6 +45,9 @@ builder.Services.AddAutoMapper(typeof(ApplicationMapperProfile).Assembly);
 // register services before Build
 builder.Services.AddScoped<ISuppliersRepository, SuppliersRepository>();
 builder.Services.AddScoped<ISuppliersService, SuppliersService>();
+
+builder.Services.AddScoped<IRfxRepository, RfxRepository>();
+builder.Services.AddScoped<IRfxService, RfxService>();
 
 
 

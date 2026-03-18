@@ -116,8 +116,6 @@ namespace SupplierHub
 			// This line will automatically discover and apply all IEntityTypeConfiguration<T>
 			// classes in your assembly (e.g., IdentityConfig, SupplierConfig, CatalogConfig, etc.).
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-
-			base.OnModelCreating(modelBuilder);
 		}
 	}
 }

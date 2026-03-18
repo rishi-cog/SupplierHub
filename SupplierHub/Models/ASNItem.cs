@@ -36,5 +36,6 @@ namespace SupplierHub.Models
 
 		[Required]
 		public DateTime UpdatedOn { get; set; }
+
 	}
 }

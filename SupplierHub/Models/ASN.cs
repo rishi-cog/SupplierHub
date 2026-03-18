@@ -26,8 +26,6 @@ namespace SupplierHub.Models
 		[Required]
 
 		public bool IsDeleted { get; set; }
-  // default -> false
-
 
 
 		[Required]

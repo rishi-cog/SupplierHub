@@ -27,9 +27,8 @@ namespace SupplierHub.Models
 
 		[Required]
 
-		public DateTime CreatedOn { get; set; }
 
-		[Required]
+		public DateTime CreatedOn { get; set; }
 		public DateTime UpdatedOn { get; set; }
 
 		[Required]

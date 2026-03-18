@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SupplierHub;
 using SupplierHub.MapProfile;
-
-
+using AutoMapper;
 
 using SupplierHub.Repositories;
 using SupplierHub.Repositories.Interface;
@@ -13,6 +12,7 @@ using SupplierHub.Services.Interface;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+<<<<<<< Updated upstream
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
@@ -20,6 +20,15 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     if (builder.Environment.IsDevelopment())
         options.EnableSensitiveDataLogging();
 });
+=======
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
+builder.Services.AddScoped<IPurchaseOrderRepository, PurchaseOrderRepository>();
+builder.Services.AddScoped<IPurchaseOrderService, PurchaseOrderService>();
+
+//ErpExportRef
+builder.Services.AddScoped<IErpExportRefRepository, ErpExportRefRepository>();
+builder.Services.AddScoped<IErpExportRefService, ErpExportRefService>();
+>>>>>>> Stashed changes
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -37,7 +46,14 @@ builder.Services.AddAutoMapper(typeof(ApplicationMapperProfile).Assembly);
 builder.Services.AddScoped<ISuppliersRepository, SuppliersRepository>();
 builder.Services.AddScoped<ISuppliersService, SuppliersService>();
 
+<<<<<<< HEAD
 //Notification repository & service
+=======
+builder.Services.AddScoped<IRfxRepository, RfxRepository>();
+builder.Services.AddScoped<IRfxService, RfxService>();
+
+
+>>>>>>> b9dd07f7bdb5c0617467d30ceb0a2756c7ee9a83
 
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<INotificationService, NotificationService>();

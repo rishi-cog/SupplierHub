@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
+using System.Collections.Generic;
 
 namespace SupplierHub.Models
 {
@@ -12,10 +13,10 @@ namespace SupplierHub.Models
 		public long? OrgID { get; set; }
 
 		[Required, MaxLength(150)]
-		public string UserName { get; set; } = null!;
+		public required string UserName { get; set; }
 
 		[Required, MaxLength(150)]
-		public string Email { get; set; } = null!;
+		public required string Email { get; set; }
 
 		[MaxLength(30)]
 		public string? Phone { get; set; }
@@ -24,13 +25,17 @@ namespace SupplierHub.Models
 		public string? PasswordHash { get; set; }
 
 		[Required, MaxLength(30)]
-		public string Status { get; set; } = null!;
+		public required string Status { get; set; }
 
+		[Required]
 		public DateTime CreatedOn { get; set; }
+
+		[Required]
 		public DateTime UpdatedOn { get; set; }
+
+		[Required]
 		public bool IsDeleted { get; set; }
 
-		// ✅ Navigation (ONLY collection, no FK attributes)
-		public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+		//public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
 	}
 }

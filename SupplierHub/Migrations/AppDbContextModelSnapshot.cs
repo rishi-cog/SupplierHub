@@ -2522,6 +2522,10 @@ namespace SupplierHub.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.PrimitiveCollection<string>("UserRoles")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UserID");
 
                     b.HasIndex("OrgID");
@@ -2531,10 +2535,8 @@ namespace SupplierHub.Migrations
 
             modelBuilder.Entity("SupplierHub.Models.UserRole", b =>
                 {
-                    b.Property<long>("UserID")
-                        .HasColumnType("bigint");
-
                     b.Property<long>("RoleID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedOn")
@@ -2562,9 +2564,20 @@ namespace SupplierHub.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-                    b.HasKey("UserID", "RoleID");
+                    b.Property<long>("UserID")
+                        .HasColumnType("bigint");
 
-                    b.HasIndex("RoleID");
+                    b.Property<long>("UserID1")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("RoleID");
+
+                    b.HasIndex("RoleID1");
+
+                    b.HasIndex("UserID1");
+
+                    b.HasIndex("UserID", "RoleID")
+                        .IsUnique();
 
                     b.ToTable("UserRoles", (string)null);
                 });
@@ -3064,31 +3077,33 @@ namespace SupplierHub.Migrations
 
             modelBuilder.Entity("SupplierHub.Models.UserRole", b =>
                 {
-                    b.HasOne("SupplierHub.Models.Role", "Role")
-                        .WithMany("UserRoles")
+                    b.HasOne("SupplierHub.Models.Role", null)
+                        .WithMany()
                         .HasForeignKey("RoleID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("SupplierHub.Models.User", "User")
-                        .WithMany("UserRoles")
+                    b.HasOne("SupplierHub.Models.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleID1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SupplierHub.Models.User", null)
+                        .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SupplierHub.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserID1")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SupplierHub.Models.Role", b =>
-                {
-                    b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("SupplierHub.Models.User", b =>
-                {
-                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

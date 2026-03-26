@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SupplierHub.DTOs.UserDTO;
@@ -7,9 +8,10 @@ using SupplierHub.Services.Interface;
 
 namespace SupplierHub.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UserController : ControllerBase
+	[ApiController]
+	[Route("api/[controller]")]
+	[Authorize(Roles = "Admin")]
+	public class UserController : ControllerBase
     {
         private readonly IUserService _service;
         private readonly ILogger<UserController> _logger;
@@ -45,30 +47,40 @@ namespace SupplierHub.Controllers
 
 
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateUserDto dto, CancellationToken ct = default)
-        {
-            if (!ModelState.IsValid)
-                return ValidationProblem(ModelState);
+		[HttpPost]
+        [AllowAnonymous] // Allow anyone to create a user (e.g., for registration)
+		public async Task<IActionResult> Create([FromBody] CreateUserDto dto, CancellationToken ct = default)
+		{
+			if (!ModelState.IsValid)
+				return ValidationProblem(ModelState);
 
-            try
-            {
-                var created = await _service.CreateAsync(dto, ct);
-                return Ok(created);
-            }
-            catch (System.Exception ex)
-            {
-                _logger.LogError(ex, "Error creating user");
-                return Problem(ex.Message);
-            }
-        }
+			try
+			{
+				var created = await _service.CreateAsync(dto, ct);
+				return Ok(created);
+			}
+			catch (System.Exception ex)
+			{
+				_logger.LogError(ex, "Error creating user");
+
+				// Check if the error message is the one we threw in the Service
+				if (ex.Message == "Email is already registered.")
+				{
+					// This returns HTTP 409 Conflict instead of 500
+					return Conflict(new { message = ex.Message });
+				}
+
+				// For any other unexpected error, return 500
+				return Problem(ex.Message);
+			}
+		}
 
 
 
 
 
 
-        [HttpPut("{id:long}")]
+		[HttpPut("{id:long}")]
         public async Task<IActionResult> Update(long id, [FromBody] UpdateUserDto dto, CancellationToken ct = default)
         {
             if (!ModelState.IsValid)

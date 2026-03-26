@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 using SupplierHub.Config.Configurations;
 using SupplierHub.Constants.Enum;
@@ -120,6 +121,49 @@ namespace SupplierHub
 			// This line will automatically discover and apply all IEntityTypeConfiguration<T>
 			// classes in your assembly (e.g., IdentityConfig, SupplierConfig, CatalogConfig, etc.).
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+		}
+		public static async Task SeedAdminUser(AppDbContext context, IPasswordHasher<User> passwordHasher)
+		{
+			// 1. Ensure the Admin Role exists (Removed Description and CreatedDate)
+			var adminRole = await context.Roles.FirstOrDefaultAsync(r => r.RoleName == "Admin");
+			if (adminRole == null)
+			{
+				adminRole = new Role
+				{
+					RoleName = "Admin",
+					Status = "Active"
+				};
+				context.Roles.Add(adminRole);
+				await context.SaveChangesAsync();
+			}
+
+			// 2. Ensure the Admin User exists
+			var adminUser = await context.Users.FirstOrDefaultAsync(u => u.Email == "admin@supplierhub.com");
+			if (adminUser == null)
+			{
+				adminUser = new User
+				{
+					UserName = "SystemAdmin",
+					Email = "admin@supplierhub.com",
+					Status = "Active"
+				};
+
+				// Hash the password using the injected hasher
+				adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "Admin@123");
+
+				context.Users.Add(adminUser);
+				await context.SaveChangesAsync();
+
+				// 3. Link User to Admin Role
+				var userRole = new UserRole
+				{
+					UserID = adminUser.UserID,
+					RoleID = adminRole.RoleID,
+					Status = "Active"
+				};
+				context.UserRoles.Add(userRole);
+				await context.SaveChangesAsync();
+			}
 		}
 	}
 }

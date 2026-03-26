@@ -1,8 +1,5 @@
-﻿using System.Net.NetworkInformation;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using SupplierHub.Constants;
 using SupplierHub.Models;
 
 namespace SupplierHub.Config.Configurations
@@ -19,22 +16,6 @@ namespace SupplierHub.Config.Configurations
 			builder.HasKey(x => x.RoleID);
 			builder.Property(x => x.RoleID)
 				   .ValueGeneratedOnAdd();
-
-				   
-		// SAFE SEED USING RoleType ENUM(NO RoleType COLUMN)
-
-			builder.HasData(
-				Enum.GetValues(typeof(RoleType))
-					.Cast<RoleType>()
-					.Select(rt => new Role
-					{
-						RoleID = (long)rt,           // ✅ stable enum-based PK
-						RoleName = rt.ToString(),    // ✅ readable role name
-						Status = "ACTIVE",
-						IsDeleted = false
-					})
-			);
-
 
 			builder.Property(x => x.RoleName)
 				   .HasMaxLength(100)
@@ -144,6 +125,8 @@ namespace SupplierHub.Config.Configurations
 			builder.ToTable("Users");
 
 			builder.HasKey(x => x.UserID);
+			builder.HasIndex(u => u.Email)
+				   .IsUnique();
 			builder.Property(x => x.UserID)
 				   .ValueGeneratedOnAdd();
 

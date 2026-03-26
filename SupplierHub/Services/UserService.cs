@@ -41,6 +41,19 @@ namespace SupplierHub.Services
 
 		public async Task<UserDto> CreateAsync(CreateUserDto dto, CancellationToken ct = default)
 		{
+			if(string.IsNullOrWhiteSpace(dto.Email))
+
+	{
+				throw new System.ArgumentException("Email is required.", nameof(dto.Email));
+			}
+
+			// 2. Now the compiler knows dto.Email is not null here
+			var existingUser = await _repo.GetByEmailAsync(dto.Email, true, ct);
+			if (existingUser != null)
+			{
+				throw new System.Exception("Email is already registered.");
+			}
+
 			var user = _mapper.Map<User>(dto);
 
 			// ✅ HASH PASSWORD (CRITICAL FIX)

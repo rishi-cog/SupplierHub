@@ -1,15 +1,17 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SupplierHub.DTOs.RoleDTO;
 using SupplierHub.Services.Interface;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SupplierHub.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class RoleController : ControllerBase
+	[ApiController]
+	[Route("api/[controller]")]
+	[Authorize(Roles = "Admin")]
+	public class RoleController : ControllerBase
     {
         private readonly IRoleService _service;
         private readonly ILogger<RoleController> _logger;

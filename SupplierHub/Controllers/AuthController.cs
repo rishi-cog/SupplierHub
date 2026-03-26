@@ -25,6 +25,7 @@ namespace SupplierHub.Controllers
 		}
 
 		[HttpPost("login")]
+		[AllowAnonymous]
 		public async Task<IActionResult> Login([FromBody] LoginRequestDto dto)
 		{
 			if (!ModelState.IsValid)

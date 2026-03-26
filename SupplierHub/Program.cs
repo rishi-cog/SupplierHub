@@ -1,9 +1,8 @@
-using System.Security.Claims;
-using System.Text;
-using System.Text.Json.Serialization;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SupplierHub;
@@ -14,6 +13,9 @@ using SupplierHub.Repositories;
 using SupplierHub.Repositories.Interface;
 using SupplierHub.Services;
 using SupplierHub.Services.Interface;
+using System.Security.Claims;
+using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +28,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         options.EnableSensitiveDataLogging();
 });
 
-builder.Services.AddControllers();
+// FIX: Merge these and remove the second AddControllers() call later in the file
+builder.Services.AddControllers(options =>
+{
+	var adminPolicy = new AuthorizationPolicyBuilder()
+		.RequireAuthenticatedUser()
+		.RequireRole("Admin")
+		.Build();
+
+	options.Filters.Add(new AuthorizeFilter(adminPolicy));
+})
+.AddJsonOptions(opts =>
+{
+	opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+});
+
+
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
@@ -173,12 +191,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 // CONTROLLERS & API
 // --------------------
 
-builder.Services
-    .AddControllers()
-    .AddJsonOptions(opts =>
-    {
-        opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    });
+
 
 // cors
 builder.Services.AddCors(options =>
@@ -241,4 +254,19 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
+using (var scope = app.Services.CreateScope())
+{
+	var services = scope.ServiceProvider;
+	try
+	{
+		var context = services.GetRequiredService<AppDbContext>();
+		var passwordHasher = services.GetRequiredService<IPasswordHasher<User>>();
+		await AppDbContext.SeedAdminUser(context, passwordHasher);
+	}
+	catch (Exception ex)
+	{
+		var logger = services.GetRequiredService<ILogger<Program>>();
+		logger.LogError(ex, "An error occurred while seeding the database.");
+	}
+}
 app.Run();

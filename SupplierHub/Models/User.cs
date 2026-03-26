@@ -15,7 +15,7 @@ namespace SupplierHub.Models
 		[Required, MaxLength(150)]
 		public required string UserName { get; set; }
 
-		[Required, MaxLength(150)]
+		[Required,MaxLength(150),]
 		public required string Email { get; set; }
 
 		[MaxLength(30)]

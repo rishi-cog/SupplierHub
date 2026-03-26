@@ -1559,7 +1559,7 @@ namespace SupplierHub.Migrations
 
                     b.HasIndex("PoID");
 
-                    b.ToTable("PoLine");
+                    b.ToTable("PoLines");
                 });
 
             modelBuilder.Entity("SupplierHub.Models.PoRevision", b =>
@@ -2548,9 +2548,6 @@ namespace SupplierHub.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
-
-                    b.Property<long>("RoleID1")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Status")
                         .IsRequired()

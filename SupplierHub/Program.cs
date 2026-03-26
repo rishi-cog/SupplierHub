@@ -119,13 +119,25 @@ builder.Services.AddScoped<IAuditLogRepository, AuditLogRepository>();
 builder.Services.AddScoped<IAuditLogService, AuditLogService>();
 
 // ============================
-// PERFORMANCE & QUALITY (NEW)
+// PERFORMANCE & QUALITY (SPLIT)
 // ============================
-builder.Services.AddScoped<IPerformanceRepository, PerformanceRepository>();
-builder.Services.AddScoped<IPerformanceService, PerformanceService>();
+builder.Services.AddScoped<ISupplierKpiRepository, SupplierKpiRepository>();
+builder.Services.AddScoped<ISupplierKpiService, SupplierKpiService>();
 
-builder.Services.AddScoped<IReceivingQualityRepository, ReceivingQualityRepository>();
-builder.Services.AddScoped<IReceivingQualityService, ReceivingQualityService>();
+builder.Services.AddScoped<IScorecardRepository, ScorecardRepository>();
+builder.Services.AddScoped<IScorecardService, ScorecardService>();
+
+builder.Services.AddScoped<IGrnRepository, GrnRepository>();
+builder.Services.AddScoped<IGrnService, GrnService>();
+
+builder.Services.AddScoped<IGrnItemRepository, GrnItemRepository>();
+builder.Services.AddScoped<IGrnItemService, GrnItemService>();
+
+builder.Services.AddScoped<IInspectionRepository, InspectionRepository>();
+builder.Services.AddScoped<IInspectionService, InspectionService>();
+
+builder.Services.AddScoped<INcrRepository, NcrRepository>();
+builder.Services.AddScoped<INcrService, NcrService>();
 
 // ==================
 // NEERAJ MODULES

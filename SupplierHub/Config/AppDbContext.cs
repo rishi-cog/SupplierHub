@@ -118,6 +118,9 @@ namespace SupplierHub
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<Permission>()
+		    .HasIndex(p => p.Code)
+		    .IsUnique();
 			// This line will automatically discover and apply all IEntityTypeConfiguration<T>
 			// classes in your assembly (e.g., IdentityConfig, SupplierConfig, CatalogConfig, etc.).
 			modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

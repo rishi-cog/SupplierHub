@@ -10,7 +10,7 @@ namespace SupplierHub.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
-	[Authorize(Roles = "Admin")]
+    [AllowAnonymous]
 	public class UserController : ControllerBase
     {
         private readonly IUserService _service;

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SupplierHub.Constants;
 using SupplierHub.Models;
 
 namespace SupplierHub.Config.Configurations
@@ -35,6 +36,21 @@ namespace SupplierHub.Config.Configurations
 
 			builder.Property(x => x.IsDeleted)
 				   .HasDefaultValue(false);
+
+
+			// SAFE SEED USING RoleType ENUM(NO RoleType COLUMN)
+
+			builder.HasData(
+				Enum.GetValues(typeof(RoleType))
+					.Cast<RoleType>()
+					.Select(rt => new Role
+					{
+						RoleID = (long)rt,           // ✅ stable enum-based PK
+						RoleName = rt.ToString(),    // ✅ readable role name
+						Status = "ACTIVE",
+						IsDeleted = false
+					})
+			);
 		}
 	}
 
